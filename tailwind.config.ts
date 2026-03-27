@@ -72,6 +72,14 @@ export default {
           DEFAULT: "hsl(var(--info))",
           foreground: "hsl(var(--info-foreground))",
         },
+        purple: {
+          DEFAULT: "hsl(var(--purple))",
+          foreground: "hsl(var(--purple-foreground))",
+        },
+        "success-dark": {
+          DEFAULT: "hsl(var(--success-dark))",
+          foreground: "hsl(var(--success-dark-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

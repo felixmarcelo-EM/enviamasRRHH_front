@@ -7,14 +7,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarCheck, FileText, Download } from "lucide-react";
 
 const statusColorMap: Record<string, string> = {
-  asistido: "bg-success", falta_j: "bg-warning", falta_nj: "bg-destructive",
-  tardanza_j: "bg-secondary", tardanza_nj: "bg-warning", vacaciones: "bg-info",
-  recuperacion: "bg-primary/60",
+  asistido: "bg-success",
+  recuperacion: "bg-info",
+  tardanza_j: "bg-success-dark",
+  tardanza_nj: "bg-warning",
+  falta_j: "bg-primary",
+  falta_nj: "bg-destructive",
+  vacaciones: "bg-purple",
 };
 
 const daysInMonth = Array.from({ length: 31 }, (_, i) => {
   const r = Math.random();
-  const s = r > 0.88 ? "falta_nj" : r > 0.82 ? "falta_j" : r > 0.76 ? "tardanza_nj" : r > 0.72 ? "vacaciones" : "asistido";
+  const s = r > 0.90 ? "falta_nj" : r > 0.84 ? "falta_j" : r > 0.78 ? "tardanza_nj" : r > 0.74 ? "tardanza_j" : r > 0.70 ? "recuperacion" : r > 0.66 ? "vacaciones" : "asistido";
   return { day: i + 1, status: s };
 });
 
@@ -73,9 +77,12 @@ export default function AttendancePage() {
               </div>
               <div className="flex flex-wrap gap-3 text-xs">
                 <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-success" />Asistido</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-destructive" />Falta No Just.</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-warning" />Falta Just. / Tardanza</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-info" />Vacaciones</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-info" />Recuperación</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-success-dark" />Tard./Salida just.</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-warning" />Tardanza</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary" />Falta justificada</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-destructive" />Falta</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-purple" />Vacaciones</span>
               </div>
             </CardContent>
           </Card>
