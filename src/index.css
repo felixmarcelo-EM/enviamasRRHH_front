@@ -47,10 +47,14 @@
 
     --success: 152 60% 42%;
     --success-foreground: 0 0% 100%;
+    --success-dark: 152 60% 30%;
+    --success-dark-foreground: 0 0% 100%;
     --warning: 42 91% 49%;
     --warning-foreground: 30 60% 16%;
     --info: 210 80% 52%;
     --info-foreground: 0 0% 100%;
+    --purple: 270 60% 52%;
+    --purple-foreground: 0 0% 100%;
   }
 }
 

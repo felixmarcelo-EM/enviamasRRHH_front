@@ -77,9 +77,12 @@ export default function AttendancePage() {
               </div>
               <div className="flex flex-wrap gap-3 text-xs">
                 <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-success" />Asistido</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-destructive" />Falta No Just.</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-warning" />Falta Just. / Tardanza</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-info" />Vacaciones</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-info" />Recuperación</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-success-dark" />Tard./Salida just.</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-warning" />Tardanza</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary" />Falta justificada</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-destructive" />Falta</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-purple" />Vacaciones</span>
               </div>
             </CardContent>
           </Card>
