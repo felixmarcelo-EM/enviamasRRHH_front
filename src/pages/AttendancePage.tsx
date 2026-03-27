@@ -7,14 +7,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarCheck, FileText, Download } from "lucide-react";
 
 const statusColorMap: Record<string, string> = {
-  asistido: "bg-success", falta_j: "bg-warning", falta_nj: "bg-destructive",
-  tardanza_j: "bg-secondary", tardanza_nj: "bg-warning", vacaciones: "bg-info",
-  recuperacion: "bg-primary/60",
+  asistido: "bg-success",
+  recuperacion: "bg-info",
+  tardanza_j: "bg-success-dark",
+  tardanza_nj: "bg-warning",
+  falta_j: "bg-primary",
+  falta_nj: "bg-destructive",
+  vacaciones: "bg-purple",
 };
 
 const daysInMonth = Array.from({ length: 31 }, (_, i) => {
   const r = Math.random();
-  const s = r > 0.88 ? "falta_nj" : r > 0.82 ? "falta_j" : r > 0.76 ? "tardanza_nj" : r > 0.72 ? "vacaciones" : "asistido";
+  const s = r > 0.90 ? "falta_nj" : r > 0.84 ? "falta_j" : r > 0.78 ? "tardanza_nj" : r > 0.74 ? "tardanza_j" : r > 0.70 ? "recuperacion" : r > 0.66 ? "vacaciones" : "asistido";
   return { day: i + 1, status: s };
 });
 
