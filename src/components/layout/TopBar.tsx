@@ -6,6 +6,8 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { NotificationsPanel } from "@/components/notifications/NotificationsPanel";
+import { RoleSwitcher } from "@/components/auth/RoleSwitcher";
+import { useAuth, ROLE_LABELS } from "@/contexts/AuthContext";
 
 interface Props {
   onToggleSidebar: () => void;
@@ -13,7 +15,9 @@ interface Props {
 
 export function TopBar({ onToggleSidebar }: Props) {
   const [showNotifications, setShowNotifications] = useState(false);
+  const { user } = useAuth();
   const unreadCount = 3;
+  const initials = user.nombre.split(" ").map(n => n[0]).join("").slice(0, 2);
 
   return (
     <header className="h-16 bg-card border-b border-border flex items-center justify-between px-6 shrink-0">
@@ -26,7 +30,9 @@ export function TopBar({ onToggleSidebar }: Props) {
         </h2>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
+        <RoleSwitcher />
+
         {/* Notifications */}
         <div className="relative">
           <Button
@@ -53,12 +59,12 @@ export function TopBar({ onToggleSidebar }: Props) {
             <button className="flex items-center gap-3 hover:bg-muted rounded-lg px-3 py-1.5 transition-colors">
               <Avatar className="w-8 h-8">
                 <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-                  AC
+                  {initials}
                 </AvatarFallback>
               </Avatar>
               <div className="text-left hidden sm:block">
-                <p className="text-sm font-medium leading-tight">Ana Castillo</p>
-                <p className="text-xs text-muted-foreground">Superadmin RRHH</p>
+                <p className="text-sm font-medium leading-tight">{user.nombre}</p>
+                <p className="text-xs text-muted-foreground">{ROLE_LABELS[user.rol]}</p>
               </div>
             </button>
           </DropdownMenuTrigger>
