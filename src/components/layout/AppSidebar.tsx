@@ -4,16 +4,17 @@ import {
   Monitor, BarChart3, Settings, ChevronLeft, ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, path: "/" },
-  { label: "Empleados", icon: Users, path: "/empleados" },
-  { label: "Asistencia", icon: CalendarCheck, path: "/asistencia" },
-  { label: "Boletas y Nómina", icon: FileText, path: "/boletas" },
-  { label: "Portal del Empleado", icon: UserCircle, path: "/portal" },
-  { label: "Activos y Equipos", icon: Monitor, path: "/activos" },
-  { label: "Reportes", icon: BarChart3, path: "/reportes" },
-  { label: "Configuración", icon: Settings, path: "/configuracion" },
+  { label: "Dashboard", icon: LayoutDashboard, path: "/", permission: "dashboard.view" },
+  { label: "Empleados", icon: Users, path: "/empleados", permission: "employees.view" },
+  { label: "Asistencia", icon: CalendarCheck, path: "/asistencia", permission: "attendance.view" },
+  { label: "Boletas y Nómina", icon: FileText, path: "/boletas", permission: "payroll.view" },
+  { label: "Portal del Empleado", icon: UserCircle, path: "/portal", permission: "portal.view" },
+  { label: "Activos y Equipos", icon: Monitor, path: "/activos", permission: "assets.view" },
+  { label: "Reportes", icon: BarChart3, path: "/reportes", permission: "reports.view" },
+  { label: "Configuración", icon: Settings, path: "/configuracion", permission: "settings.view" },
 ];
 
 interface Props {
@@ -23,6 +24,9 @@ interface Props {
 
 export function AppSidebar({ collapsed, onToggle }: Props) {
   const location = useLocation();
+  const { hasPermission } = useAuth();
+
+  const visibleItems = navItems.filter(item => hasPermission(item.permission));
 
   return (
     <aside
@@ -48,7 +52,7 @@ export function AppSidebar({ collapsed, onToggle }: Props) {
 
       {/* Navigation */}
       <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
-        {navItems.map((item) => {
+        {visibleItems.map((item) => {
           const isActive = location.pathname === item.path || 
             (item.path !== "/" && location.pathname.startsWith(item.path));
           return (
