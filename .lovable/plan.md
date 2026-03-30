@@ -1,28 +1,28 @@
 
 
-## Plan: Modal de Nueva Solicitud en Portal del Empleado
+## Plan: Modal de Registrar Activo en Módulo de Activos y Equipos
 
 ### Objetivo
-Agregar un Dialog al botón "Nueva Solicitud" en la pestaña Solicitudes del Portal del Empleado, permitiendo crear solicitudes de tipo: Falta, Tardanza, Salida Temprana o Vacaciones, cada una con campos adaptados.
+Agregar un Dialog/modal al botón "Registrar Activo" con un formulario para registrar nuevos equipos y asignarlos a empleados.
 
-### Cambio único en `src/pages/EmployeePortalPage.tsx`
+### Cambio único en `src/pages/AssetsPage.tsx`
 
-1. **Nuevos estados**: `showNuevaSolicitud`, `tipoSolicitud`, `fechaInicio`, `fechaFin`, `justificacion`, y lista dinámica `solicitudes`
-2. **Dialog con formulario dinámico**:
-   - **Tipo de solicitud** (Select): Falta, Tardanza, Salida Temprana, Vacaciones
-   - **Campos comunes**: Fecha (date picker)
-   - **Campos condicionales por tipo**:
-     - *Falta*: Fecha + Justificación (textarea obligatoria)
-     - *Tardanza*: Fecha + Hora de llegada (input time) + Justificación
-     - *Salida Temprana*: Fecha + Hora de salida (input time) + Justificación
-     - *Vacaciones*: Fecha inicio + Fecha fin + Observaciones (textarea opcional) + cálculo automático de días
-3. **Al guardar**: agregar a la tabla con estado "Pendiente", cerrar modal, toast de confirmación
-4. **Botón** → `onClick={() => setShowNuevaSolicitud(true)}`
+1. **Nuevos estados**: `showRegistrar` (boolean), campos del formulario (`tipo`, `descripcion`, `empleado`, `marca`, `modelo`, `serie`, `estado`), y lista dinámica de activos con `useState`
+2. **Dialog con formulario**:
+   - **Tipo de activo** (Select): Laptop, Monitor, Headset, Teclado, Mouse, Otro
+   - **Marca** (Input)
+   - **Modelo / Descripción** (Input)
+   - **Número de serie** (Input)
+   - **Empleado asignado** (Select): lista mock de empleados + opción "Sin asignar"
+   - **Estado** (Select): En uso, Asignado, En mantenimiento, Disponible
+   - **Fecha de asignación**: automática (fecha actual) o seleccionable
+   - **Observaciones** (Textarea, opcional)
+3. **Al guardar**: agregar el activo a la lista local, cerrar modal, mostrar toast de confirmación
+4. **Botón** → `onClick={() => setShowRegistrar(true)}`
 
 ### Imports adicionales
-- `Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter` de `@/components/ui/dialog`
-- `Input`, `Label`, `Textarea`, `Select/SelectContent/SelectItem/SelectTrigger/SelectValue`
-- `Calendar`, `Popover` para date pickers
-- `useToast`, `useState`
-- `format`, `differenceInCalendarDays` de `date-fns`
+- `Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter`
+- `Label`, `Textarea`
+- `useToast` / `toast` de sonner
+- `format` de `date-fns`
 
