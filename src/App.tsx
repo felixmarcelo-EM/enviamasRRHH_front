@@ -14,6 +14,7 @@ import EmployeePortalPage from "./pages/EmployeePortalPage";
 import AssetsPage from "./pages/AssetsPage";
 import ReportsPage from "./pages/ReportsPage";
 import SettingsPage from "./pages/SettingsPage";
+import ProfilesPage from "./pages/ProfilesPage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/portal" element={<EmployeePortalPage />} />
             <Route path="/activos" element={<AssetsPage />} />
             <Route path="/reportes" element={<ReportsPage />} />
+            <Route path="/perfiles" element={<ProfilesPage />} />
             <Route path="/configuracion" element={<SettingsPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
