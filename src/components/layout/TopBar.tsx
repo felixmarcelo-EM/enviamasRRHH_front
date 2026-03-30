@@ -49,7 +49,7 @@ export function TopBar({ onToggleSidebar }: Props) {
             )}
           </Button>
           {showNotifications && (
-            <NotificationsPanel onClose={() => setShowNotifications(false)} />
+            <NotificationsPanel onClose={() => setShowNotifications(false)} onUnreadCountChange={setUnreadCount} />
           )}
         </div>
 
