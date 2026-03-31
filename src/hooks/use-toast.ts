@@ -134,6 +134,17 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">;
 
+type ToastListener = (toast: Toast) => void;
+const toastListeners: ToastListener[] = [];
+
+export function onToastAdded(listener: ToastListener): () => void {
+  toastListeners.push(listener);
+  return () => {
+    const idx = toastListeners.indexOf(listener);
+    if (idx > -1) toastListeners.splice(idx, 1);
+  };
+}
+
 function toast({ ...props }: Toast) {
   const id = genId();
 
